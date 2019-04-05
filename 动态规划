@@ -1,0 +1,34 @@
+#### 0. 适用条件
+
+* 问题由交叠的子问题构成时，可以用动态规划把子问题的街记录下来，然后得到原问题的解
+
+#### 1. 斐波那契数列
+```
+F(0)=0; 
+F(1)=1;
+F(n) = F(n-1) + F(n-2) , n>1 
+```
+如果递归计算会计算多次子问题，使用动态规划的方式从前往后计算，把前两个问题的解记录下来
+
+```python
+def f1(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return f1(n - 1) + f1(n - 2)
+
+
+def f2(n):
+    l = [0, 1]
+    while len(l) <= n:
+        l.append(l[-1] + l[-2])
+    return l[n]
+
+
+for i in range(10):
+    print(f1(i), end=' ')
+print("")
+for i in range(10):
+    print(f2(i), end=' ')
+```
